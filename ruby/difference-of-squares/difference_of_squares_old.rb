@@ -35,6 +35,5 @@ class Squares
 
 		return (square_sum - sum_square)
 	end
-
 end
 
