@@ -17,7 +17,10 @@ class Squares
   end
 
   def difference
-    return 0 if @integers.last.zero?
-    square_of_sum - sum_of_squares
+    if @integers.last.zero?
+      return 0
+    else
+      square_of_sum - sum_of_squares
+    end
   end
 end
