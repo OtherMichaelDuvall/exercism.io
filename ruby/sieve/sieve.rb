@@ -2,23 +2,25 @@ module BookKeeping
 VERSION = 1
 end
 
-class Sieve 
-  def initialize(number_input)
-    @start_at = [4, 6, 10, 14, 22, 26]
-    @interval = [2, 3, 5, 7, 11, 13]
-    @number   = number_input
+class Sieve
+  def initialize(natural_number)
+    @range_limit = natural_number
   end
 
   def primes
-    not_prime ||= []
-    index = 0
-
-    @interval.each do |interval|
-      (@start_at[index]..@number).step(interval) { |x| not_prime << x }
-      index += 1
-    end
+    interval_range = [*2..Math.sqrt(@range_limit).round]
+    not_primes     = Array.new 
     
-    primes = [*2..@number] - not_prime
+    interval_range.each do |interval|
+      multiplier = 0
+      begin 
+        not_prime = interval**2 + (multiplier * interval)
+        not_primes << not_prime
+        multiplier += 1
+      end while not_prime < @range_limit
+    end
+
+    primes = [*2..@range_limit] - not_primes 
   end
 
 end
